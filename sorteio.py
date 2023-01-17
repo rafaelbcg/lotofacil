@@ -1,25 +1,40 @@
+"""
+Programa que pegar o resultado de um determinado concurso da Lotofácil e confere com as apostas feitas que estão salvas no
+arquivo jogos.txt informando quantos pontos fez neste sorteio.
+
+Por Rafael de Brito
+
+"""
 import requests
 concurso = input(f'informe o concurso que deseja acessar: ')
 
 req = requests.get(f'https://servicebus2.caixa.gov.br/portaldeloterias/api/lotofacil/{concurso}',verify=False)
 # a variável lotofacil conterá  uma série de informações
 lotofacil = req.json()
+
 dezenas = lotofacil['listaDezenas']
 
+#abrindo o arquivo de jogos
 jogos = open('jogos.txt','r')
 apostas = jogos.readlines()
+jogos.close()
+
 pontos11 = 0
 pontos12 = 0
 pontos13 = 0
 pontos14 = 0
 pontos15 = 0
-jogos.close()
-print(f'para concurso {concurso} foi sorteados os numeros: {dezenas}')
+
+#mostrando o resultado
+print(f'para concurso {concurso}')
+print(f'foi sorteados os numeros: {dezenas}')
 for i in apostas:
     pontos = 0
     for d in dezenas:
         if d in i:
             pontos += 1
+    
+    #trocando a estrutra if-elif-else por match/case
     match pontos:
         case 11:
             pontos11 +=1
@@ -31,6 +46,7 @@ for i in apostas:
             pontos14 += 1
         case 15:
             pontos15 += 1
+
     print(f'o jogo {i} fez {pontos} pontos')
 
 print(f'jogos com 11 pontos {pontos11}')
