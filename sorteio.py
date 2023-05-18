@@ -32,8 +32,11 @@ for i in apostas:
     pontos = 0
     for d in dezenas:
         if d in i:
-            pontos += 1
-    
+            pontos += 1 
+    aux =i.replace("\n","")     #jogo sem pular a linha  
+    print(f'{aux}',end=" ")
+    print(f"fez tantos {pontos} pontos")
+
     #trocando a estrutra if-elif-else por match/case
     match pontos:
         case 11:
@@ -46,8 +49,6 @@ for i in apostas:
             pontos14 += 1
         case 15:
             pontos15 += 1
-
-    print(f'o jogo {i} fez {pontos} pontos')
 
 print(f'jogos com 11 pontos {pontos11}')
 print(f'jogos com 12 pontos {pontos12}')
