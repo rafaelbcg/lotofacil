@@ -13,9 +13,9 @@ req = requests.get(f'https://servicebus2.caixa.gov.br/portaldeloterias/api/lotof
 lotofacil = req.json()
 
 dezenas = lotofacil['listaDezenas']
-
 #abrindo o arquivo de jogos
 jogos = open('jogos.txt','r')
+#2901jogos = open('resultado0909.txt','r')
 apostas = jogos.readlines()
 jogos.close()
 

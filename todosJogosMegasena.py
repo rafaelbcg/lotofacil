@@ -19,6 +19,7 @@ for i in range(1,ultimoSorteio+1):
         reqs2 = requests.get(f'https://servicebus2.caixa.gov.br/portaldeloterias/api/megasena/{i}',verify=False)
     megaSena = reqs2.json()
     numerosSorteados = megaSena["listaDezenas"]
+    print(f'{i} >> {numerosSorteados}')
     for j in numerosSorteados:
         numeros[int(j)-1] += 1
     reqs2.close()
@@ -34,12 +35,16 @@ try:
 except FileExistsError:
     file = open("resultado.txt","x")
 
-ordenado = sorted(resultados,key=lambda x:x[1])
-for k in range(15):
+ordenado = sorted(resultados,key=lambda x:x[1])[::-1]
+for k in range(60):
     m = ordenado[k]
     text = f'{k} --- {m[0]} --- {m[1]} --- {100*m[1]/ultimoSorteio}%'
     print(text)
-    file.write(text+"/n")
+    file.write(text+"\n")
+    if k == 14:
+        file.write("\n")
+        file.write("----------------------------------------")
+        file.write("\n")
 
 file.close()
 

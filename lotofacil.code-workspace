@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../ia_test"
+		},
+		{
+			"path": "../sorteio"
+		}
+	],
+	"settings": {}
+}
